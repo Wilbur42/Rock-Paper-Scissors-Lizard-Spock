@@ -9,7 +9,7 @@ while choosing:
     print('''Welcome to Rock, Paper, Scissors, Lizard, Spock!
 Exit - "1"
 View Scores - "2"
-Play - "rock", "paper", "scissors", "lizard" or "Spock"
+Play - "rock", "paper", "scissors", "lizard" or "spock"
     ''')
     player_choice = input('> ').strip()
     if player_choice == '1':
