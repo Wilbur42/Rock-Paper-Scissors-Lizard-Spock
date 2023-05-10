@@ -24,7 +24,7 @@ while True:
         break
 
     if player_choice == '2':
-        print('\nCurrent Scores:\nPlayer - {player_score}\nComputer - {computer_score}')
+        print(f'\nCurrent Scores:\nPlayer - {player_score}\nComputer - {computer_score}')
 
     elif player_choice in options:
         computer_choice = random.choice(options[player_choice])
