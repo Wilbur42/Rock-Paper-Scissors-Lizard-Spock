@@ -1,50 +1,46 @@
-import random; import os
-all_options = ['rock', 'paper', 'scissors', 'lizard', 'spock']
+import random
+import os
+
+options = {
+    'rock': ['scissors', 'lizard'],
+    'paper': ['rock', 'spock'],
+    'scissors': ['paper', 'lizard'],
+    'lizard': ['paper', 'spock'],
+    'spock': ['rock', 'scissors']
+}
+
 player_score = 0
 computer_score = 0
-choosing = True
-player_choice = ''
-while choosing:
+
+while True:
     os.system('clear')
-    print('''Welcome to Rock, Paper, Scissors, Lizard, Spock!
-Exit - "1"
-View Scores - "2"
-Play - "rock", "paper", "scissors", "lizard" or "spock"
-    ''')
-    player_choice = input('> ').strip()
+    print('Welcome to Rock, Paper, Scissors, Lizard, Spock!')
+    print('Exit - "1"\nView Scores - "2"\nPlay - "rock", "paper", "scissors", "lizard" or "spock"')
+
+    player_choice = input('> ').lower().strip()
+
     if player_choice == '1':
+        print(f'\nFinal Scores:\nPlayer - {player_score}\nComputer - {computer_score}')
         break
-    elif player_choice == '2':
-        print(f'''
-Current Scores:
-Player - {player_score}
-Computer - {computer_score}
-        ''')
-        input('[Press Enter]')
-    elif player_choice in all_options:
-        def find_list():
-            rock_win = ['rock', 'scissors', 'lizard']
-            paper_win = ['paper', 'rock', 'spock']
-            scissors_win = ['scissors', 'paper', 'lizard']
-            lizard_win = ['lizard', 'paper', 'spock']
-            spock_win = ['spock', 'rock', 'scissors']
-            lists = [rock_win, paper_win, scissors_win, lizard_win, spock_win]
-            for list in lists:
-                if player_choice in list[0]:
-                    return list
-        computer_choice = random.choice(all_options)
-        print()
+
+    if player_choice == '2':
+        print('\nCurrent Scores:\nPlayer - {player_score}\nComputer - {computer_score}')
+
+    elif player_choice in options:
+        computer_choice = random.choice(options[player_choice])
+
         if computer_choice == player_choice:
-            print(f'Its a Draw! You both picked {computer_choice.title()}!')
-        elif computer_choice in find_list():
-            print(f'You win! {player_choice.title()} beats {computer_choice.title()}!'); player_score+=1
+            print(f"\nIt's a Draw! You both picked {computer_choice.title()}!")
+        elif computer_choice in options[player_choice]:
+            player_score += 1
+            print(f'\nYou win! {player_choice.title()} beats {computer_choice.title()}!')
         else:
-            print(f'You Loose! {computer_choice.title()} beats {player_choice.title()}!'); computer_score+=1
-        print()
-        input('[Press Enter]')
+            computer_score += 1
+            print(f'\nYou Lose! {computer_choice.title()} beats {player_choice.title()}!')
+
     else:
         print('Invalid Option, Try Again')
-        print()
-        input('[Press Enter]')
-print()
-print('Thank You for Playing!')
+
+    input('\n[Press Enter]')
+
+print('\nThank You for Playing!')
